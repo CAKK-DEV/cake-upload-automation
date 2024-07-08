@@ -54,9 +54,12 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
-
 	// database
-	implementation("mysql:mysql-connector-java:8.0.28")
+	implementation("mysql:mysql-connector-java")
+	implementation("org.locationtech.jts:jts-core:1.18.2")
+
+	// aws
+	implementation("com.amazonaws:aws-java-sdk-s3:1.12.566")
 
 	// test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
