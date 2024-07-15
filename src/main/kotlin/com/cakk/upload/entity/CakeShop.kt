@@ -64,16 +64,9 @@ class CakeShop(
     var deletedAt: LocalDateTime? = null
 
     @OneToMany(mappedBy = "cakeShop", cascade = [CascadeType.PERSIST])
-    val cakes: HashSet<Cake> = HashSet();
+    val cakes: Set<Cake> = HashSet();
 
     fun updateThumbnailUrl(thumbnailUrl: String) {
         this.thumbnailUrl = thumbnailUrl
-    }
-
-    fun addCakes(cakeUrls: List<String>) {
-        cakeUrls.forEach {
-            val cake = Cake(it, 0, this)
-            cakes.add(cake)
-        }
     }
 }

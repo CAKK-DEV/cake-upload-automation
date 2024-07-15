@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile
 @Service
 class FileUploadService(
     private val s3Client: AmazonS3,
-    @Value("\${cloud.aws.s3-bucket}")
+    @Value("\${cloud.aws.s3.bucket}")
     private val bucketName: String
 ) {
 

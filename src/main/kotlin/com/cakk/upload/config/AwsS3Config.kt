@@ -16,7 +16,7 @@ class AwsS3Config(
     private val secretKey: String,
     @Value("\${cloud.aws.region.static}")
     private val region: String,
-    @Value("\${cloud.aws.s3-bucket}")
+    @Value("\${cloud.aws.s3.bucket}")
     private val bucketName: String
 ) {
 

@@ -55,12 +55,13 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
 	// database
-	implementation("mysql:mysql-connector-java")
+	implementation("mysql:mysql-connector-java:8.0.33")
 	implementation("org.locationtech.jts:jts-core:1.18.2")
+	implementation("org.hibernate.orm:hibernate-spatial:6.4.4.Final")
 
 	// aws
 	implementation("com.amazonaws:aws-java-sdk-s3:1.12.566")
 
 	// test
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation("org.springframework.boot:spring-boot-starter-test")
 }

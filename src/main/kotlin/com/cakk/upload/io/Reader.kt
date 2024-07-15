@@ -14,12 +14,24 @@ class Reader {
         val shopDirectoryList = getSubDirectoryNames()
         val shopToCakesMap: MutableMap<String, Array<CakeFile>> = HashMap()
 
+        println("-------------------------------------------------------------------------------")
         shopDirectoryList.forEach { shopName ->
-            val oldDir = File("shops/$shopName")
-            val files: Array<File> = oldDir.listFiles() ?: throw RuntimeException("$shopName 폴터가 비어있습니다.")
-            val cakeFiles: Array<CakeFile> = files.map { CakeFile(it.name, fileToMultipartFile(it)) }.toTypedArray()
-
-            shopToCakesMap[shopName] = cakeFiles
+            try {
+                val oldDir = File("shops/$shopName")
+                oldDir.isDirectory || throw RuntimeException("directory not found")
+                println("[LOG] ::::::::: $shopName 의 파일을 읽어옵니다.")
+                val files: Array<File> = oldDir.listFiles() ?: throw RuntimeException()
+                val cakeFiles: Array<CakeFile> = files.map { CakeFile(it.name, fileToMultipartFile(it)) }.toTypedArray()
+                println("[LOG] ::::::::: $shopName 의 파일은 총 ${cakeFiles.size}개 입니다")
+                shopToCakesMap[shopName] = cakeFiles
+            } catch (e: Exception) {
+                if (e.message == "directory not found") {
+                    println("[ERROR] ::::::: $shopName 은 폴더가 아닙니다.")
+                } else {
+                    println("[ERROR] ::::::: $shopName 폴더를 읽어오는 중 오류가 발생했습니다.")
+                }
+            }
+            println("-------------------------------------------------------------------------------")
         }
 
         return shopToCakesMap
